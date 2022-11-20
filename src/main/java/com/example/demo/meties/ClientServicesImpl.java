@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -75,5 +78,14 @@ public class ClientServicesImpl implements ClientServices {
 		}
 		return clientDtos;
 	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Client client = clientRepository.findByEmail(email);
+		if(client == null ) throw new UsernameNotFoundException(email);
+		return new User(client.getEmail(),client.getEncryptedPassword(),new ArrayList<>());
+	}
+
+	
 
 }

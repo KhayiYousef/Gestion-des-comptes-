@@ -3,6 +3,8 @@ package com.example.demo.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,7 +56,7 @@ public class ClientRestController {
 	
 	@PostMapping(produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
 			consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<ClientResponse> addClient(@RequestBody ClientRequest clientRequest) 
+	public ResponseEntity<ClientResponse> addClient(@Valid @RequestBody ClientRequest clientRequest) 
 	{
 		ClientDto clientDto = new ClientDto();
 		BeanUtils.copyProperties(clientRequest, clientDto);

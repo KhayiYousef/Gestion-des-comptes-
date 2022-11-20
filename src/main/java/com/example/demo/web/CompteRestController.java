@@ -3,6 +3,8 @@ package com.example.demo.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +54,7 @@ public class CompteRestController {
 	}
 	@PostMapping(produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
 			consumes =  {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<CompteResponse> addCompte(@RequestBody CompteRequest compteRequest)
+	public ResponseEntity<CompteResponse> addCompte(@Valid @RequestBody CompteRequest compteRequest)
 	{
 		CompteDto compteDto = new CompteDto();
 		CompteResponse compteResponse = new CompteResponse();

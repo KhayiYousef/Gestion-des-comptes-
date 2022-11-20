@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
 import com.example.demo.dao.CompteRepository;
 import com.example.demo.dao.OperationRepository;
 import com.example.demo.dto.VersDto;
@@ -14,6 +16,7 @@ import com.example.demo.entities.Operation;
 import com.example.demo.entities.Retrait;
 import com.example.demo.entities.Versement;
 
+@Service
 public class LesOperation implements IBanque{
 	@Autowired
 	private CompteRepository compteRepository;
